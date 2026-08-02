@@ -71,7 +71,7 @@ Windows 默认发现路径为：
 
 ## 斜杠入口
 
-安装 `0.1.0-twinkstar.7` 或更高版本后，可在 Hana 的 `/` 菜单使用插件命令：
+安装 `0.1.0-twinkstar.8` 或更高版本后，可在 Hana 的 `/` 菜单使用插件命令：
 
 ```text
 /twinkstar_browser_router <网页任务>

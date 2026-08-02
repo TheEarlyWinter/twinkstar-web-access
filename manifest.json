@@ -1,7 +1,7 @@
 {
   "id": "twinkstar-web-access",
   "name": "Twinkstar Web Access",
-  "version": "0.1.0-twinkstar.7",
+  "version": "0.1.0-twinkstar.8",
   "description": "Token-protected CDP web access for a user-managed Twinkstar Browser instance.",
   "trust": "full-access",
   "minAppVersion": "0.89.0",

@@ -1,7 +1,7 @@
 const ROUTER_SKILL = 'twinkstar-browser-router';
 
 export const name = 'twinkstar-browser-router';
-export const aliases = ['twinkstar-browser', 'xingyuan-browser'];
+export const aliases = ['twinkstar-browser-router', 'twinkstar-browser', 'xingyuan-browser'];
 export const description = '使用星愿浏览器路由处理登录态、动态页面和网页交互任务';
 export const scope = 'session';
 export const permission = 'owner';

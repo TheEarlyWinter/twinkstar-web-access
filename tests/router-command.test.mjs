@@ -12,7 +12,7 @@ import {
 
 test('router command exposes the expected visible slash metadata', () => {
   assert.equal(name, 'twinkstar-browser-router');
-  assert.deepEqual(aliases, ['twinkstar-browser', 'xingyuan-browser']);
+  assert.deepEqual(aliases, ['twinkstar-browser-router', 'twinkstar-browser', 'xingyuan-browser']);
   assert.equal(scope, 'session');
   assert.equal(permission, 'owner');
   assert.match(description, /星愿浏览器/);
