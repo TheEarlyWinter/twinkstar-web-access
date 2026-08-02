@@ -1,0 +1,14 @@
+{
+  "name": "twinkstar-web-access",
+  "version": "0.1.0-twinkstar.2",
+  "private": true,
+  "type": "module",
+  "description": "Token-protected CDP access to a user-managed Twinkstar Browser instance for HanaAgent.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/browser-config.test.mjs tests/site-knowledge.test.mjs tests/proxy-auth.test.mjs"
+  }
+}

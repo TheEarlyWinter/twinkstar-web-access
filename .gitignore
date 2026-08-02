@@ -1,0 +1,24 @@
+node_modules/
+.DS_Store
+*.log
+plugin-data/
+
+# Local runtime data: never publish browser state, tokens, screenshots, or diagnostics.
+.env
+.env.*
+!.env.example
+*.local
+*.local.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.token
+*.session
+DevToolsActivePort
+owned-tabs.json
+proxy-token
+site-patterns/
+screenshots/
+coverage/
+test-results/

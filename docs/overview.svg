@@ -1,0 +1,22 @@
+<svg width="1200" height="520" viewBox="0 0 1200 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="520" fill="#ffffff"/>
+  <rect x="50" y="110" width="260" height="300" rx="24" fill="#F7F8FA" stroke="#E8EAED"/>
+  <rect x="470" y="110" width="260" height="300" rx="24" fill="#F7F8FA" stroke="#E8EAED"/>
+  <rect x="890" y="110" width="260" height="300" rx="24" fill="#F7F8FA" stroke="#E8EAED"/>
+  <text x="100" y="170" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">1. Discover</text>
+  <text x="100" y="215" fill="#5F6368" font-family="Inter, Arial, sans-serif" font-size="18">Use Hanako native</text>
+  <text x="100" y="245" fill="#5F6368" font-family="Inter, Arial, sans-serif" font-size="18">web tools for light</text>
+  <text x="100" y="275" fill="#5F6368" font-family="Inter, Arial, sans-serif" font-size="18">public pages</text>
+  <text x="520" y="170" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">2. Escalate</text>
+  <text x="520" y="215" fill="#5F6368" font-family="Inter, Arial, sans-serif" font-size="18">Switch to CDP when</text>
+  <text x="520" y="245" fill="#5F6368" font-family="Inter, Arial, sans-serif" font-size="18">login, JS, interaction,</text>
+  <text x="520" y="275" fill="#5F6368" font-family="Inter, Arial, sans-serif" font-size="18">or upload is needed</text>
+  <text x="940" y="170" fill="#111111" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">3. Learn</text>
+  <text x="940" y="215" fill="#5F6368" font-family="Inter, Arial, sans-serif" font-size="18">Save validated notes</text>
+  <text x="940" y="245" fill="#5F6368" font-family="Inter, Arial, sans-serif" font-size="18">under plugin data</text>
+  <text x="940" y="275" fill="#5F6368" font-family="Inter, Arial, sans-serif" font-size="18">for repeat domains</text>
+  <path d="M330 260H450" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M410 240L450 260L410 280" stroke="#111111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M750 260H870" stroke="#111111" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M830 240L870 260L830 280" stroke="#111111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

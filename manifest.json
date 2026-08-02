@@ -1,0 +1,45 @@
+{
+  "id": "twinkstar-web-access",
+  "name": "Twinkstar Web Access",
+  "version": "0.1.0-twinkstar.2",
+  "description": "Token-protected CDP web access for a user-managed Twinkstar Browser instance.",
+  "trust": "full-access",
+  "minAppVersion": "0.89.0",
+  "contributes": {
+    "configuration": {
+      "properties": {
+        "browserProfile": {
+          "type": "string",
+          "enum": ["twinkstar", "auto", "chrome", "chromium"],
+          "default": "twinkstar",
+          "title": "Target Chromium Browser"
+        },
+        "browserUserDataDir": {
+          "type": "string",
+          "default": "",
+          "title": "Browser User Data Directory Override"
+        },
+        "probeCommonDebuggingPorts": {
+          "type": "boolean",
+          "default": false,
+          "title": "Probe Common Debugging Ports When Discovery Fails"
+        },
+        "proxyPort": {
+          "type": "number",
+          "default": 3457,
+          "title": "Local CDP Proxy Port"
+        },
+        "autoStartProxy": {
+          "type": "boolean",
+          "default": false,
+          "title": "Eagerly Start Local CDP Proxy When Plugin Loads"
+        },
+        "allowOperateNonOwnedTabs": {
+          "type": "boolean",
+          "default": false,
+          "title": "Dangerous: Allow Operating Existing Browser Tabs"
+        }
+      }
+    }
+  }
+}
