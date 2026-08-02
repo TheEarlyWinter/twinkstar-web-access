@@ -1,9 +1,9 @@
 {
   "name": "twinkstar-web-access",
-  "version": "0.1.0-twinkstar.3",
+  "version": "0.1.0-twinkstar.4",
   "private": true,
   "type": "module",
-  "description": "通过令牌保护的 CDP 访问用户自行管理的星愿浏览器，供 HanaAgent 使用。",
+  "description": "Token-protected CDP access to a user-managed Twinkstar Browser instance for HanaAgent.",
   "license": "MIT",
   "engines": {
     "node": ">=22"
