@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>星愿浏览器访问：让 HanaAgent 安全接入星愿浏览器</title>
+  <title>Hanako Web Access：把日常 Chrome 真正接进 OpenHanako</title>
   <style>
     :root {
       --bg: #ffffff;
@@ -73,18 +73,18 @@
 <body>
   <div class="wrap">
     <header class="hero">
-      <img class="banner" src="./banner.svg" alt="星愿浏览器访问插件示意图" />
-      <span class="eyebrow">HanaAgent 插件</span>
-      <h1>星愿浏览器访问：让 HanaAgent 安全接入星愿浏览器</h1>
-      <p class="lead">无需重新打开独立浏览器。插件连接你已经开启远程调试的星愿浏览器，复用现有登录态，在后台标签页完成动态网页读取、站内搜索、点击、输入与上传，同时保持令牌认证和插件自建标签页边界。</p>
+      <img class="banner" src="./banner.svg" alt="Hanako Web Access banner" />
+      <span class="eyebrow">OpenHanako Plugin</span>
+      <h1>Hanako Web Access：把日常 Chrome 真正接进 OpenHanako</h1>
+      <p class="lead">不是再开一个给 Agent 用的浏览器。是让 Hanako 直接接入你平时就在用的 Chrome，复用登录态，在后台开标签页，完成动态网页读取、站内搜索、点击、输入、上传，以及最基础的站点经验沉淀。</p>
       <div class="actions">
-        <a class="btn" href="https://github.com/TheEarlyWinter/twinkstar-web-access" target="_blank" rel="noreferrer">查看 GitHub</a>
-        <a class="btn secondary" href="https://github.com/TheEarlyWinter/twinkstar-web-access#readme" target="_blank" rel="noreferrer">安装说明</a>
+        <a class="btn" href="https://github.com/huanyu16/hanako-web-access" target="_blank" rel="noreferrer">查看 GitHub</a>
+        <a class="btn secondary" href="https://github.com/huanyu16/hanako-web-access#readme" target="_blank" rel="noreferrer">安装说明</a>
       </div>
     </header>
 
     <section>
-      <h2>问题不在工具数量，而在浏览器环境是否正确</h2>
+      <h2>问题不在浏览器工具少，而在浏览器环境不对</h2>
       <div class="grid grid-3">
         <div class="card">
           <h3>独立实例很干净，也很笨</h3>
@@ -104,7 +104,7 @@
     <section>
       <h2>核心结构</h2>
       <div class="img-card">
-        <img src="./overview.svg" alt="星愿浏览器访问插件架构示意图" />
+        <img src="./overview.svg" alt="Hanako Web Access overview" />
       </div>
     </section>
 
@@ -112,16 +112,16 @@
       <h2>这个插件做了什么</h2>
       <div class="grid grid-3">
         <div class="card">
-          <h3>接入现有星愿浏览器</h3>
-          <p>通过 CDP 连接用户日常使用的星愿浏览器，不强行拉起新的浏览器实例，已有登录态可以复用。</p>
+          <h3>接入现有 Chrome</h3>
+          <p>通过 CDP 连接用户日常 Chrome，而不是强行拉起新的浏览器实例。登录态天然复用。</p>
         </div>
         <div class="card">
           <h3>补齐真实动作</h3>
           <p>支持开标签页、读页、执行 JS、点击、输入、滚动、截图、上传文件、关闭标签页。</p>
         </div>
         <div class="card">
-          <h3>保留最小化站点笔记</h3>
-          <p>成功读取后仅按域名保存成功状态、访问方式和文本长度，不保存页面标题或正文。</p>
+          <h3>加上一层经验沉淀</h3>
+          <p>成功读取后按域名保存轻量经验，记录已验证的访问方式和基础事实，避免下一次又从零开始。</p>
         </div>
       </div>
     </section>
@@ -157,17 +157,17 @@
         <tbody>
           <tr>
             <td>官网、博客、文档、公开静态页面</td>
-            <td>优先 Hana 原生 web search / web fetch</td>
+            <td>优先 Hanako 原生 web search / web fetch</td>
             <td>更轻、更快、代价更低</td>
           </tr>
           <tr>
             <td>登录后页面、JS 重页面、社媒站内搜索</td>
-            <td>切到星愿浏览器访问插件</td>
+            <td>切到 Hanako Web Access</td>
             <td>静态工具经常天然无效</td>
           </tr>
           <tr>
             <td>上传、发布、填写表单、多步交互</td>
-            <td>切到星愿浏览器访问插件</td>
+            <td>切到 Hanako Web Access</td>
             <td>这是浏览器自动化问题，不是抓取问题</td>
           </tr>
         </tbody>
@@ -186,12 +186,12 @@
 
     <section>
       <h2>安装方式</h2>
-      <div class="code">1. 打开星愿浏览器
+      <div class="code">1. 打开 Chrome
 2. 访问 chrome://inspect/#remote-debugging
-3. 开启远程调试并接受授权提示
-4. 在 Hana → 设置 → 插件 中安装本插件
+3. 勾选 Allow remote debugging for this browser instance
+4. 在 Hanako → 设置 → 插件 中安装本插件
 5. 允许 full-access 插件
-6. 先调用 twinkstar-web-access_browser_status 确认发现成功</div>
+6. 对 Agent 说：遵循 web-access skill</div>
     </section>
 
     <section>
@@ -212,13 +212,13 @@
 
     <section>
       <h2>一句话总结</h2>
-      <p>星愿浏览器访问插件不会取代 Hana 原生联网能力。静态工具不适用时，它让 Agent 在用户真实使用的星愿浏览器中完成任务，并以令牌、代理端标签页校验和按需启动控制风险。</p>
+      <p>Hanako Web Access 不是要取代 Hanako 原生联网能力，而是给 Hanako 增加一个真正够用的重型浏览器档位：当静态工具已经不对路时，它让 Agent 进入你真实在用的 Chrome，把事情做完。</p>
     </section>
 
     <footer class="footer">
-      <div>GitHub：<a href="https://github.com/TheEarlyWinter/twinkstar-web-access" target="_blank" rel="noreferrer">https://github.com/TheEarlyWinter/twinkstar-web-access</a></div>
-      <div>基于 hanako-web-access 的个人 fork，保留 MIT 许可证与上游署名。</div>
-      <div>非官方、无关联的星愿浏览器集成实现。</div>
+      <div>GitHub：<a href="https://github.com/huanyu16/hanako-web-access" target="_blank" rel="noreferrer">https://github.com/huanyu16/hanako-web-access</a></div>
+      <div>介绍页：<a href="https://huanyu16.github.io/hanako-web-access/" target="_blank" rel="noreferrer">https://huanyu16.github.io/hanako-web-access/</a></div>
+      <div>Adapted from web-access by 一泽 Eze under MIT License.</div>
     </footer>
   </div>
 </body>

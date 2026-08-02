@@ -2,8 +2,8 @@ import { scrollPage } from '../lib/cdp-client.js';
 import { browserExternalPermission } from '../lib/tool-permissions.js';
 
 export const name = 'browser_scroll';
-export const description = '将插件创建的浏览器标签页滚动到页面底部或指定 Y 坐标。';
-export const sessionPermission = browserExternalPermission('scroll', '滚动插件创建的浏览器标签页');
+export const description = 'Scroll a plugin-owned browser tab to the bottom or a specific Y offset.';
+export const sessionPermission = browserExternalPermission('scroll', 'Scroll a plugin-owned browser tab');
 export const parameters = {
   type: 'object',
   properties: {
@@ -17,7 +17,7 @@ export const parameters = {
 export async function execute(input, toolCtx) {
   const result = await scrollPage(toolCtx, input.targetId, input.direction, input.y);
   return {
-    content: [{ type: 'text', text: '页面已滚动' }],
+    content: [{ type: 'text', text: 'Scrolled page' }],
     details: result,
   };
 }
