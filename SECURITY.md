@@ -1,34 +1,34 @@
-# Security Policy
+# 安全策略
 
-## Scope
+## 适用范围
 
-Twinkstar Web Access connects HanaAgent to a user-managed Chromium browser through the Chrome DevTools Protocol. That browser may contain authenticated sessions, personal tabs, private documents, and local upload paths. Treat the plugin as a high-trust integration.
+星愿浏览器访问插件通过 Chrome DevTools Protocol 把 HanaAgent 连接到用户自行管理的 Chromium 浏览器。浏览器可能包含已登录会话、私人标签页、私密文档和本地上传路径，应将本插件视为高信任集成。
 
-## Local Security Boundary
+## 本地安全边界
 
-- The proxy listens on loopback only and requires a random per-plugin token.
-- The token, owned-tab registry, screenshots, and site notes are stored under Hana's plugin data directory.
-- The proxy enforces the owned-tab registry itself. The tool layer is not the only guard.
-- `allowOperateNonOwnedTabs` disables that restriction. It is intentionally dangerous and should stay off for normal use.
-- The plugin never launches, kills, or copies a Twinkstar profile automatically.
+- 代理只监听本机回环地址，并要求每个插件实例独有的随机令牌。
+- 令牌、已创建标签页记录、截图和站点笔记都存放在 Hana 的插件数据目录。
+- 代理自身会校验标签页归属，工具层之外仍有一道限制。
+- `allowOperateNonOwnedTabs` 会关闭该限制。它是有意设计的危险开关，日常使用必须保持关闭。
+- 插件不会自动启动、关闭或复制星愿浏览器 profile。
 
-A process running as the same local user can still be powerful enough to inspect user files or local loopback traffic. The token reduces accidental and cross-process exposure; it does not turn the operating system into a security sandbox.
+与用户运行在同一 Windows 账户下的本地程序，依然可能拥有读取用户文件或侦听本地回环流量的能力。令牌可以降低误用和普通跨进程访问风险，却不能把操作系统变成安全沙箱。
 
-## Privacy Notes
+## 隐私说明
 
-Page text returned by the browser tools enters the current model context. Do not use this plugin on sensitive pages unless the model provider and task are appropriate for that data.
+浏览器工具返回的页面文本会进入当前模型上下文。对于账户、聊天、私有文档或其他敏感页面，请确认模型供应商和任务本身适合处理这些数据。
 
-Do not commit any of the following:
+以下内容绝不能提交：
 
-- Plugin data directories
+- 插件数据目录
 - `proxy-token`
 - `owned-tabs.json`
 - `DevToolsActivePort`
-- Screenshots, downloaded files, logs, or diagnostic captures
-- Browser profiles, cookies, sessions, API keys, or account exports
+- 截图、下载文件、日志或诊断捕获
+- 浏览器 profile、Cookie、会话、API 密钥或账户导出文件
 
-## Reporting A Vulnerability
+## 漏洞报告
 
-For a public fork, use the repository's private security advisory channel for credential exposure, browser-session access, proxy authentication bypasses, or cross-tab access bugs. Use public issues only for non-sensitive defects.
+公开 fork 中遇到凭据泄露、浏览器会话访问、代理认证绕过或跨标签页访问问题时，请使用仓库的私密安全公告渠道。普通公开 issue 只应处理不含敏感数据的缺陷。
 
-Do not include browser target IDs, cookie values, local profile paths, screenshots, or reproduction data from authenticated sites in public reports.
+公开报告中不得附带浏览器 target ID、Cookie 值、本地 profile 路径、截图或来自已登录站点的复现数据。

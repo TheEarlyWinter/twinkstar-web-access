@@ -1,8 +1,8 @@
 {
   "id": "twinkstar-web-access",
-  "name": "Twinkstar Web Access",
-  "version": "0.1.0-twinkstar.2",
-  "description": "Token-protected CDP web access for a user-managed Twinkstar Browser instance.",
+  "name": "星愿浏览器访问",
+  "version": "0.1.0-twinkstar.3",
+  "description": "通过令牌保护的 CDP 网页访问插件，连接用户自行管理的星愿浏览器。",
   "trust": "full-access",
   "minAppVersion": "0.89.0",
   "contributes": {
@@ -12,32 +12,32 @@
           "type": "string",
           "enum": ["twinkstar", "auto", "chrome", "chromium"],
           "default": "twinkstar",
-          "title": "Target Chromium Browser"
+          "title": "目标 Chromium 浏览器"
         },
         "browserUserDataDir": {
           "type": "string",
           "default": "",
-          "title": "Browser User Data Directory Override"
+          "title": "浏览器用户数据目录覆盖值"
         },
         "probeCommonDebuggingPorts": {
           "type": "boolean",
           "default": false,
-          "title": "Probe Common Debugging Ports When Discovery Fails"
+          "title": "发现失败时探测常见调试端口"
         },
         "proxyPort": {
           "type": "number",
           "default": 3457,
-          "title": "Local CDP Proxy Port"
+          "title": "本地 CDP 代理端口"
         },
         "autoStartProxy": {
           "type": "boolean",
           "default": false,
-          "title": "Eagerly Start Local CDP Proxy When Plugin Loads"
+          "title": "插件加载时预先启动本地 CDP 代理"
         },
         "allowOperateNonOwnedTabs": {
           "type": "boolean",
           "default": false,
-          "title": "Dangerous: Allow Operating Existing Browser Tabs"
+          "title": "危险：允许操作已有浏览器标签页"
         }
       }
     }

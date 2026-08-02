@@ -1,46 +1,57 @@
-# Twinkstar Web Access
+# 星愿浏览器访问插件
 
-Token-protected Chrome DevTools Protocol access for a user-managed Twinkstar Browser instance in HanaAgent.
+让 HanaAgent 通过 Chrome DevTools Protocol（CDP）安全接入用户自己正在使用的星愿浏览器，并复用已有登录态完成动态网页任务。
 
-This is a personal fork of [hanako-web-access](https://github.com/huanyu16/hanako-web-access). It keeps the useful background-tab workflow while making Twinkstar Browser the explicit default and tightening the local proxy boundary.
+本项目基于 [hanako-web-access](https://github.com/huanyu16/hanako-web-access) 的个人 fork 改造。它以星愿浏览器为默认目标，并强化了本地代理、标签页边界和隐私数据处理。
 
-## What It Does
+## 它能做什么
 
-Twinkstar Web Access connects to a browser instance that the user has already enabled for remote debugging. It can create background tabs, read visible text, run scoped page JavaScript, click, type, scroll, upload files, take screenshots, and close tabs created for the task.
+星愿浏览器访问插件会连接已经由用户开启远程调试的浏览器实例。它可以创建后台标签页、读取可见文本、执行受限页面 JavaScript、点击、输入、滚动、选择上传文件、截图，并关闭任务创建的标签页。
 
-It is intended for login-required and JavaScript-heavy sites where a separate headless browser would lose the user's established session.
+它适合以下场景：
 
-## Requirements
+- 需要登录态的网站
+- JavaScript 渲染较重的页面
+- 站内搜索、页面交互、文件上传等任务
+- 普通无头浏览器无法复用的日常浏览器会话
 
-- HanaAgent 0.89.0 or newer.
-- Node.js 22 or newer in the Hana runtime.
-- Twinkstar Browser or another Chromium browser with remote debugging enabled.
+静态公开网页、官网文档和简单事实查询，仍应优先使用 Hana 的网页搜索与网页读取工具。
 
-Twinkstar Browser uses Chromium, so its DevTools Protocol endpoint is compatible with this plugin.
+## 前置条件
 
-## Enable Twinkstar Debugging
+- HanaAgent `0.89.0` 或更高版本
+- Hana 运行时中的 Node.js `22` 或更高版本
+- 已开启远程调试的星愿浏览器，或其他 Chromium 浏览器
 
-1. Open Twinkstar Browser.
-2. Navigate to `chrome://inspect/#remote-debugging`.
-3. Enable remote debugging and accept the browser authorization prompt when shown.
-4. In HanaAgent, use `twinkstar-web-access_browser_status` to confirm discovery before opening a tab.
+星愿浏览器采用 Chromium 内核，其 DevTools Protocol 端点可以直接与本插件兼容。
 
-The default discovery location on Windows is `%LOCALAPPDATA%\Twinkstar\User Data\DevToolsActivePort`.
+## 开启星愿远程调试
 
-Do not copy a Twinkstar profile into a separate browser profile to obtain a debugging session. Twinkstar's cookie storage uses custom encryption, so copied profiles can lose their usable login state. This plugin deliberately connects to the user-managed browser instance and never restarts it automatically.
+1. 打开星愿浏览器。
+2. 在地址栏访问 `chrome://inspect/#remote-debugging`。
+3. 开启远程调试；出现浏览器授权提示时选择允许。
+4. 在 HanaAgent 中调用 `twinkstar-web-access_browser_status`，确认插件已发现星愿浏览器后再打开任务标签页。
 
-## Configuration
+Windows 默认发现路径为：
 
-| Setting | Default | Purpose |
+```text
+%LOCALAPPDATA%\Twinkstar\User Data\DevToolsActivePort
+```
+
+请勿复制星愿浏览器 profile 后再启动调试实例。星愿的 Cookie 使用自定义加密，复制 profile 可能导致登录态无法使用。本插件只连接用户自行管理的浏览器实例，不会自动重启、关闭或复制星愿浏览器 profile。
+
+## 配置项
+
+| 配置键 | 默认值 | 作用 |
 | --- | --- | --- |
-| `browserProfile` | `twinkstar` | Select `twinkstar`, `chrome`, `chromium`, or `auto`. |
-| `browserUserDataDir` | empty | Override the browser user-data directory, useful after profile migration. An override is used exclusively. |
-| `probeCommonDebuggingPorts` | `false` | Probe ports such as 9222 only after explicit opt-in. |
-| `proxyPort` | `3457` | Local loopback port for the plugin proxy. This avoids the upstream plugin's default port 3456. |
-| `autoStartProxy` | `false` | Eagerly start the local proxy when the plugin loads. Browser tools always start it on demand; `browser_status` does not. |
-| `allowOperateNonOwnedTabs` | `false` | Dangerous escape hatch that allows access to existing browser tabs. Leave disabled. |
+| `browserProfile` | `twinkstar` | 选择 `twinkstar`、`chrome`、`chromium` 或 `auto`。 |
+| `browserUserDataDir` | 空 | 覆盖浏览器用户数据目录，适用于迁移 profile 后的场景。设置后只使用该目录。 |
+| `probeCommonDebuggingPorts` | `false` | 显式开启后，发现失败时才探测 9222 等常见调试端口。 |
+| `proxyPort` | `3457` | 插件本地回环代理端口，用于避开上游插件默认使用的 3456。 |
+| `autoStartProxy` | `false` | 插件加载时是否预先启动代理。浏览器工具会按需启动代理，`browser_status` 不会启动。 |
+| `allowOperateNonOwnedTabs` | `false` | 危险开关：允许操作已有浏览器标签页。日常使用请保持关闭。 |
 
-## Tools
+## 可用工具
 
 - `twinkstar-web-access_browser_status`
 - `twinkstar-web-access_browser_open_tab`
@@ -56,32 +67,34 @@ Do not copy a Twinkstar profile into a separate browser profile to obtain a debu
 - `twinkstar-web-access_browser_get_site_pattern`
 - `twinkstar-web-access_browser_list_site_patterns`
 
-The plugin creates its own background tabs and records their target IDs. Both the tool layer and the local proxy reject non-owned target IDs unless the dangerous override is explicitly enabled.
+插件会创建自己的后台标签页并记录 target ID。默认情况下，工具层和本地代理都会拒绝操作非插件创建的标签页。
 
-## Security And Privacy
+## 安全与隐私
 
-- The local proxy listens only on `127.0.0.1` and requires a random token stored in the plugin's private data directory.
-- The proxy stops when the plugin unloads.
-- New tabs accept only `http`, `https`, and `about:blank` URLs. This prevents the browser tool from becoming a `file:` reader.
-- Screenshots are written only under the plugin private data directory.
-- Site notes retain domains, success metadata, and text length. They do not retain page body text or page titles.
-- `browser_read_page` returns visible page text to the current model context. Treat account pages, private documents, and message pages as sensitive even though the plugin itself does not upload them to a separate service.
-- Publishing, payment, deletion, upload, and other meaningful browser actions require explicit user intent. The plugin declares browser operations as external side effects so Hana's approval system can review them.
+- 本地代理只监听 `127.0.0.1`，并要求保存在插件私有数据目录中的随机令牌。
+- 插件卸载时会请求停止代理。
+- 新标签页只接受 `http`、`https` 和 `about:blank`，避免浏览器工具成为 `file:` 本地文件读取器。
+- 截图只会写入插件私有数据目录。
+- 站点笔记只保存域名、成功状态和文本长度，不保存页面标题或正文。
+- `browser_read_page` 返回的可见页面文本会进入当前模型上下文。账户页、私有文档和聊天页面都应按敏感数据处理。
+- 发布、支付、删除、上传和其他有实质影响的网页操作，必须有用户明确意图。插件将这些动作声明为外部副作用，供 Hana 的审批机制审查。
 
-The plugin data directory can still contain sensitive material, including the proxy token, owned tab URLs, domain notes, and screenshots. It belongs in local plugin data only, never in this repository.
+插件数据目录仍可能包含代理令牌、已创建标签页 URL、站点笔记和截图。这些内容只能留在本地插件数据中，绝不能提交到仓库。
 
-## Installation
+## 安装
 
-Install the source directory through HanaAgent's plugin UI or place it under the user plugin directory as `twinkstar-web-access`. Enable full-access plugins only after reviewing the source and configuration.
+可通过 HanaAgent 插件界面安装源码目录，或将目录放入用户插件目录并命名为 `twinkstar-web-access`。启用 full-access 插件前，请先审阅源码和配置。
 
-For development, use HanaAgent's plugin development loop. Do not run a copied profile or an automatic browser-kill workflow as part of normal plugin startup.
+开发阶段请使用 Hana 的插件开发槽。正常启动流程中不要复制浏览器 profile，也不要实现自动杀掉浏览器进程的工作流。
 
-## Open Source Release
+## 开源发布
 
-Read [docs/OPEN_SOURCE_CHECKLIST.md](docs/OPEN_SOURCE_CHECKLIST.md) before publishing. The repository includes `node scripts/release-check.mjs`, which scans tracked files and Git history for common personal paths and credential patterns. It is a guardrail, not a replacement for manual review.
+公开推送前请阅读 [docs/OPEN_SOURCE_CHECKLIST.md](docs/OPEN_SOURCE_CHECKLIST.md)。仓库提供了 `node scripts/release-check.mjs`，它会扫描当前源码与 Git 历史中的常见个人路径和凭据模式；它是安全护栏，不能替代人工审查。
 
-Enable GitHub secret scanning and push protection for the public repository. GitHub documents that leaked credentials remain reachable through Git history even after they are deleted from the latest revision.
+建议为公开仓库开启 GitHub Secret Scanning 和 Push Protection。删除最新提交中的凭据并不能抹去历史中已经暴露的数据。
 
-## Upstream And License
+## 上游与许可证
 
-This fork is based on [huanyu16/hanako-web-access](https://github.com/huanyu16/hanako-web-access), itself adapted from [eze-is/web-access](https://github.com/eze-is/web-access). Attribution and the MIT license are preserved in [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This is an unofficial integration and does not include Twinkstar Browser code or resources.
+本项目基于 [huanyu16/hanako-web-access](https://github.com/huanyu16/hanako-web-access)，后者又参考并适配了 [eze-is/web-access](https://github.com/eze-is/web-access)。版权归属和 MIT 许可证保留在 [LICENSE](LICENSE) 与 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 中。
+
+这是非官方、无关联的星愿浏览器集成项目，不包含星愿浏览器的代码、二进制文件或资源。
