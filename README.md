@@ -69,15 +69,19 @@ Windows 默认发现路径为：
 
 插件会创建自己的后台标签页并记录 target ID。默认情况下，工具层和本地代理都会拒绝操作非插件创建的标签页。
 
-## 斜杠入口
+## Skill 入口
 
-安装 `0.1.0-twinkstar.8` 或更高版本后，可在 Hana 的 `/` 菜单使用插件命令：
+此版本不注册 server-command，避免依赖 Hana 桌面端的 WebSocket slash 分发链。
 
-```text
-/twinkstar_browser_router <网页任务>
-```
+要在 Hana 的 `/` 菜单使用星愿浏览器入口，请将本仓库中的 `skills/twinkstar-browser-router/` 作为**用户级 skill**安装一次。随后按以下方式使用：
 
-输入连字符形式 `/twinkstar-browser-router <网页任务>` 也会被识别。命令会将任务连同 `twinkstar-browser-router` skill 的路由指令提交到当前会话；未提供任务时，它只会询问要处理的网页任务，不会打开或检查浏览器。
+1. 在输入框键入 `/twinkstar-browser-router`。
+2. 在菜单中选择 `twinkstar-browser-router` SkillBadge。
+3. 输入网页任务并按正常发送。
+
+SkillBadge 会随普通聊天消息进入当前会话，由 Agent 调用本插件提供的 `twinkstar-web-access_browser_*` 工具。它不经过 server-command dispatcher，因此 Hana renderer 更新不会重现 `agentId required` 这类命令分发问题。
+
+`/twinkstar-browser-router <网页任务>` 的一行式 server-command 入口已移除。
 
 ## 安全与隐私
 

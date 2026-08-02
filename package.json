@@ -1,6 +1,6 @@
 {
   "name": "twinkstar-web-access",
-  "version": "0.1.0-twinkstar.8",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "Token-protected CDP access to a user-managed Twinkstar Browser instance for HanaAgent.",
@@ -9,6 +9,6 @@
     "node": ">=22"
   },
   "scripts": {
-    "test": "node --test tests/browser-config.test.mjs tests/site-knowledge.test.mjs tests/proxy-auth.test.mjs tests/router-command.test.mjs"
+    "test": "node --test tests/browser-config.test.mjs tests/site-knowledge.test.mjs tests/proxy-auth.test.mjs tests/router-skill.test.mjs"
   }
 }

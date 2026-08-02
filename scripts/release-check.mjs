@@ -70,6 +70,9 @@ for (const file of sourceFiles) {
     continue;
   }
   const absolutePath = path.join(root, file);
+  // git ls-files includes tracked files removed from the working tree until
+  // the deletion is committed; their historical content is scanned below.
+  if (!fs.existsSync(absolutePath)) continue;
   const content = fs.readFileSync(absolutePath);
   if (!isProbablyBinary(content)) scanText(`working tree ${file}`, content.toString('utf8'));
 }
