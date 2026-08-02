@@ -97,7 +97,44 @@ SkillBadge 会随普通聊天消息进入当前会话，由 Agent 调用本插�
 
 ## 安装
 
-可通过 HanaAgent 插件界面安装源码目录，或将目录放入用户插件目录并命名为 `twinkstar-web-access`。启用 full-access 插件前，请先审阅源码和配置。
+从 [GitHub Releases](https://github.com/TheEarlyWinter/twinkstar-web-access/releases/latest) 下载**同一版本**的两个 ZIP。以 `v1.0.0` 为例：
+
+| 文件 | 作用 | 安装位置 |
+| --- | --- | --- |
+| `twinkstar-web-access-v1.0.0.zip` | 插件本体，提供 `twinkstar-web-access_browser_*` 浏览器工具。 | HanaAgent 的“设置 -> 插件” |
+| `twinkstar-browser-router-skill-v1.0.0.zip` | Companion Skill，在 `/` 菜单提供 `twinkstar-browser-router` SkillBadge。 | HanaAgent 的“设置 -> 技能” |
+
+这两个文件需要一起安装：插件负责实际连接和操作星愿浏览器，skill 负责把浏览器任务正确路由给插件。不要把 skill ZIP 当作插件安装，也不要把插件 ZIP 放进技能管理器。
+
+### 1. 安装插件本体
+
+1. 打开 HanaAgent 的“设置 -> 插件”。
+2. 将 `twinkstar-web-access-v1.0.0.zip` 拖入插件管理界面，或使用界面中的安装入口选择该文件。
+3. 在权限确认中审阅插件说明后启用它。此插件的信任级别为 `full-access`，因为它需要连接你自己运行的本地浏览器调试端点。
+4. 若插件刚安装后工具未出现，重启 HanaAgent，或等待当前会话完成一次安全重建。
+
+### 2. 安装 Companion Skill
+
+1. 打开 HanaAgent 的“设置 -> 技能 -> 管理技能”。
+2. 导入 `twinkstar-browser-router-skill-v1.0.0.zip`。无需手动解压 ZIP。
+3. 在“Agent 技能开关”中选择你当前使用的 Agent，并启用 `twinkstar-browser-router`。
+4. 新开一个会话，或重启 HanaAgent，使 `/` 菜单重新加载技能列表。
+
+### 3. 连接星愿浏览器并使用
+
+1. 按照“开启星愿远程调试”一节，在星愿浏览器中允许远程调试。
+2. 在 HanaAgent 输入框输入 `/twinkstar-browser-router`。
+3. 选择菜单中的 `twinkstar-browser-router` SkillBadge。
+4. 再输入你的网页任务，例如“打开已登录的订单页，读取最近一条订单状态”，然后正常发送。
+
+正确流程是先选择 SkillBadge，再发送任务。旧版 `/twinkstar-browser-router <网页任务>` 一行式命令已移除。
+
+### 常见问题
+
+- **`/` 菜单没有 `twinkstar-browser-router`**：确认 skill ZIP 安装在“设置 -> 技能”，并在当前 Agent 的“Agent 技能开关”中启用；然后新开会话或重启 HanaAgent。
+- **能看到 SkillBadge，但 Agent 找不到浏览器**：确认星愿浏览器正在运行，且 `chrome://inspect/#remote-debugging` 中已允许远程调试；随后让 Agent 检查浏览器连接状态。
+- **插件工具没有出现**：确认插件 ZIP 安装在“设置 -> 插件”且处于启用状态；full-access 插件在安装或 reload 后可能需要重启或等待当前会话安全重建。
+- **只有一个 ZIP**：仅安装插件仍可让 Agent 在已知工具场景下调用浏览器工具，但不会拥有 `/twinkstar-browser-router` 的可见入口；仅安装 skill 则没有可调用的浏览器工具。为获得完整体验，请安装两个文件。
 
 开发阶段请使用 Hana 的插件开发槽。正常启动流程中不要复制浏览器 profile，也不要实现自动杀掉浏览器进程的工作流。
 
