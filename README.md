@@ -1,4 +1,21 @@
-# 星愿浏览器访问插件
+<div align="center">
+
+# 🌐 Twinkstar Web Access
+
+<p align="center">
+  <b>HanaAgent / OpenHanako 星愿浏览器 (Twinkstar) CDP 安全接入与网页自动化交互插件</b>
+</p>
+
+[![HanaAgent Plugin](https://img.shields.io/badge/HanaAgent-Plugin-E879F9?style=flat-square&logo=probot&logoColor=white)](https://github.com/liliMozi/openhanako)
+[![JavaScript](https://img.shields.io/badge/Language-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+[![CDP](https://img.shields.io/badge/Protocol-Chrome%20DevTools%20Protocol-4285F4?style=flat-square)]()
+
+</div>
+
+---
+
+## 📖 简介
 
 让 HanaAgent 通过 Chrome DevTools Protocol（CDP）安全接入用户自己正在使用的星愿浏览器，并复用已有登录态完成动态网页任务。
 
