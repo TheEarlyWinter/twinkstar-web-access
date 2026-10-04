@@ -1,6 +1,6 @@
 {
   "name": "twinkstar-web-access",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "description": "Token-protected CDP access to a user-managed Twinkstar Browser instance for HanaAgent.",

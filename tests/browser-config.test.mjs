@@ -23,3 +23,10 @@ test('auto discovery keeps Twinkstar ahead of other Chromium browsers on Windows
   const config = resolveBrowserConfig({ profile: 'auto' });
   assert.deepEqual(config.candidates.map((candidate) => candidate.id), ['twinkstar', 'chrome', 'chromium']);
 });
+
+test('resolves twinkstar profile to auto on Linux when unset or default', () => {
+  const config = resolveBrowserConfig({}, { platform: 'linux', homeDir: '/tmp/testuser' });
+  assert.equal(config.profile, 'auto');
+  assert.deepEqual(config.candidates.map((c) => c.id), ['chrome', 'chromium']);
+});
+

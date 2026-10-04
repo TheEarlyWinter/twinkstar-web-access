@@ -42,18 +42,21 @@
 
 星愿浏览器采用 Chromium 内核，其 DevTools Protocol 端点可以直接与本插件兼容。
 
-## 开启星愿远程调试
+## 开启远程调试
+
+### Windows (星愿浏览器)
 
 1. 打开星愿浏览器。
 2. 在地址栏访问 `chrome://inspect/#remote-debugging`。
 3. 开启远程调试；出现浏览器授权提示时选择允许。
-4. 在 HanaAgent 中调用 `twinkstar-web-access_browser_status`，确认插件已发现星愿浏览器后再打开任务标签页。
+4. Windows 默认发现路径为：`%LOCALAPPDATA%\Twinkstar\User Data\DevToolsActivePort`。
 
-Windows 默认发现路径为：
+### Linux (Google Chrome / Chromium)
 
-```text
-%LOCALAPPDATA%\Twinkstar\User Data\DevToolsActivePort
-```
+1. 打开 Chrome 或 Chromium。
+2. 在地址栏访问 `chrome://inspect/#remote-debugging`。
+3. 勾选 **“Allow remote debugging for this browser instance”**。
+4. Linux 默认发现路径为：`~/.config/google-chrome/DevToolsActivePort` 或 `~/.config/chromium/DevToolsActivePort`。在 Linux 下若未指定 profile，插件会自动采用 `auto` 策略，无缝接入系统级 Chrome/Chromium。
 
 请勿复制星愿浏览器 profile 后再启动调试实例。星愿的 Cookie 使用自定义加密，复制 profile 可能导致登录态无法使用。本插件只连接用户自行管理的浏览器实例，不会自动重启、关闭或复制星愿浏览器 profile。
 
