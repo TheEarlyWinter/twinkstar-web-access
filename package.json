@@ -1,6 +1,6 @@
 {
   "name": "twinkstar-web-access",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "type": "module",
   "description": "Token-protected CDP access to user-managed Chromium browsers (Google Chrome, Twinkstar) for HanaAgent.",
