@@ -2,17 +2,17 @@
 name: twinkstar-web-access
 license: MIT
 github: https://github.com/TheEarlyWinter/twinkstar-web-access
-source_note: Personal Twinkstar Browser fork for HanaAgent
-summary: Token-protected CDP browser access for a user-managed Twinkstar Browser instance.
+source_note: Personal Twinkstar & Chromium Browser fork for HanaAgent
+summary: Token-protected CDP browser access for user-managed Chromium browsers (Google Chrome, Twinkstar).
 description: |
-  Use this skill whenever a user needs their existing Twinkstar Browser session, including login-required pages, JavaScript-heavy sites, in-site search, forms, or browser interaction. Requests such as “use Twinkstar Browser”, “use my existing login”, “星愿浏览器”, “已有登录态”, “动态网页”, or “站内搜索” should route through this skill and the twinkstar-web-access browser tools.
+  Use this skill whenever a user needs their existing browser session (Google Chrome, Twinkstar Browser, Chromium), including login-required pages, JavaScript-heavy sites, in-site search, forms, or browser interaction. Requests such as “use Chrome”, “use Twinkstar Browser”, “use my existing login”, “谷歌浏览器”, “Chrome”, “星愿浏览器”, “已有登录态”, “动态网页”, or “站内搜索” should route through this skill and the twinkstar-web-access browser tools.
 ---
 
-# Twinkstar Web Access
+# Twinkstar & Chromium Web Access
 
 Route existing-browser tasks to the installed `twinkstar-web-access` plugin. This plugin is the only browser automation path described by this skill.
 
-Use Hana's lightweight web search and web fetch tools for public discovery and static pages. Use Twinkstar Web Access only when an existing browser session, dynamic rendering, or browser interaction is actually necessary.
+Use Hana's lightweight web search and web fetch tools for public discovery and static pages. Use Twinkstar & Chromium Web Access only when an existing browser session, dynamic rendering, or browser interaction is actually necessary.
 
 ## Start With Status
 
@@ -20,12 +20,12 @@ Before using a browser tab, call `twinkstar-web-access_browser_status`.
 
 The normal setup is:
 
-1. Open Twinkstar Browser.
+1. Open Google Chrome or Twinkstar Browser.
 2. Visit `chrome://inspect/#remote-debugging`.
-3. Enable remote debugging and accept the browser authorization prompt.
-4. Confirm that browser status reports a live Twinkstar endpoint.
+3. Enable remote debugging ("Allow remote debugging for this browser instance") and accept the browser authorization prompt.
+4. Confirm that browser status reports a live browser endpoint.
 
-Do not restart Twinkstar, copy its profile, guess a debugging port, or kill existing browser processes merely to make a task work. Twinkstar profile copies can lose usable login state because of custom cookie encryption.
+Do not restart the browser, copy its profile, guess a debugging port, or kill existing browser processes merely to make a task work. Copying profiles can lose usable login state because of custom cookie encryption or OS keyring bindings.
 
 ## Working Pattern
 

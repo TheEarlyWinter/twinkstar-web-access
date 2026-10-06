@@ -132,26 +132,26 @@ SkillBadge 会随普通聊天消息进入当前会话，由 Agent 调用本插�
 
 ## 安装
 
-从 [GitHub Releases](https://github.com/TheEarlyWinter/twinkstar-web-access/releases/latest) 下载**同一版本**的两个 ZIP。以 `v1.0.0` 为例：
+从 [GitHub Releases](https://github.com/TheEarlyWinter/twinkstar-web-access/releases/latest) 下载**同一版本**的两个 ZIP。以 `v1.1.0` 为例：
 
 | 文件 | 作用 | 安装位置 |
 | --- | --- | --- |
-| `twinkstar-web-access-v1.0.0.zip` | 插件本体，提供 `twinkstar-web-access_browser_*` 浏览器工具。 | HanaAgent 的“设置 -> 插件” |
-| `twinkstar-browser-router-skill-v1.0.0.zip` | Companion Skill，在 `/` 菜单提供 `twinkstar-browser-router` SkillBadge。 | HanaAgent 的“设置 -> 技能” |
+| `twinkstar-web-access-v1.1.0.zip` | 插件本体，提供 `twinkstar-web-access_browser_*` 浏览器工具。 | HanaAgent 的“设置 -> 插件” |
+| `twinkstar-browser-router-skill-v1.1.0.zip` | Companion Skill，在 `/` 菜单提供 `twinkstar-browser-router` SkillBadge。 | HanaAgent 的“设置 -> 技能” |
 
-这两个文件需要一起安装：插件负责实际连接和操作星愿浏览器，skill 负责把浏览器任务正确路由给插件。不要把 skill ZIP 当作插件安装，也不要把插件 ZIP 放进技能管理器。
+这两个文件需要一起安装：插件负责实际连接和操作浏览器，skill 负责把浏览器任务正确路由给插件。不要把 skill ZIP 当作插件安装，也不要把插件 ZIP 放进技能管理器。
 
 ### 1. 安装插件本体
 
 1. 打开 HanaAgent 的“设置 -> 插件”。
-2. 将 `twinkstar-web-access-v1.0.0.zip` 拖入插件管理界面，或使用界面中的安装入口选择该文件。
+2. 将 `twinkstar-web-access-v1.1.0.zip` 拖入插件管理界面，或使用界面中的安装入口选择该文件。
 3. 在权限确认中审阅插件说明后启用它。此插件的信任级别为 `full-access`，因为它需要连接你自己运行的本地浏览器调试端点。
 4. 若插件刚安装后工具未出现，重启 HanaAgent，或等待当前会话完成一次安全重建。
 
 ### 2. 安装 Companion Skill
 
 1. 打开 HanaAgent 的“设置 -> 技能 -> 管理技能”。
-2. 导入 `twinkstar-browser-router-skill-v1.0.0.zip`。无需手动解压 ZIP。
+2. 导入 `twinkstar-browser-router-skill-v1.1.0.zip`。无需手动解压 ZIP。
 3. 在“Agent 技能开关”中选择你当前使用的 Agent，并启用 `twinkstar-browser-router`。
 4. 新开一个会话，或重启 HanaAgent，使 `/` 菜单重新加载技能列表。
 
