@@ -58,6 +58,11 @@
 3. 勾选 **“Allow remote debugging for this browser instance”**。
 4. Linux 默认发现路径为：`~/.config/google-chrome/DevToolsActivePort` 或 `~/.config/chromium/DevToolsActivePort`。在 Linux 下若未指定 profile，插件会自动采用 `auto` 策略，无缝接入系统级 Chrome/Chromium。
 
+> 💡 **提示（Chromium 136+ 内核机制）**：  
+> - 推荐使用上述方式在日常主力浏览器内直接勾选启用，即可在完全保留登录态、书签和扩展插件的前提下安全接入。  
+> - 插件现已默认开启常见调试端口嗅探（9222/9229/9333），即使 `DevToolsActivePort` 未及时写入也能瞬间完成自动握手。  
+> - 若使用命令行手动传参 `--remote-debugging-port`，Chromium 136+ 安全策略要求必须显式指定独立的 `--user-data-dir`，否则命令行调试参数会被内核静默忽略。
+
 请勿复制星愿浏览器 profile 后再启动调试实例。星愿的 Cookie 使用自定义加密，复制 profile 可能导致登录态无法使用。本插件只连接用户自行管理的浏览器实例，不会自动重启、关闭或复制星愿浏览器 profile。
 
 ## 配置项
@@ -66,7 +71,7 @@
 | --- | --- | --- |
 | `browserProfile` | `twinkstar` | 选择 `twinkstar`、`chrome`、`chromium` 或 `auto`。 |
 | `browserUserDataDir` | 空 | 覆盖浏览器用户数据目录，适用于迁移 profile 后的场景。设置后只使用该目录。 |
-| `probeCommonDebuggingPorts` | `false` | 显式开启后，发现失败时才探测 9222 等常见调试端口。 |
+| `probeCommonDebuggingPorts` | `true` | 默认开启。在常规发现失败时自动探测 9222、9229、9333 等常见调试端口，极大增强跨平台与新版 Chromium 的连接鲁棒性。 |
 | `proxyPort` | `3457` | 插件本地回环代理端口，用于避开上游插件默认使用的 3456。 |
 | `autoStartProxy` | `false` | 插件加载时是否预先启动代理。浏览器工具会按需启动代理，`browser_status` 不会启动。 |
 | `allowOperateNonOwnedTabs` | `false` | 危险开关：允许操作已有浏览器标签页。日常使用请保持关闭。 |
