@@ -21,7 +21,7 @@
         },
         "probeCommonDebuggingPorts": {
           "type": "boolean",
-          "default": false,
+          "default": true,
           "title": "Probe Common Debugging Ports When Discovery Fails"
         },
         "proxyPort": {
