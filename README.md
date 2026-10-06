@@ -1,9 +1,9 @@
 <div align="center">
 
-# 🌐 Twinkstar Web Access
+# 🌐 Twinkstar & Chromium Web Access
 
 <p align="center">
-  <b>HanaAgent / OpenHanako 星愿浏览器 (Twinkstar) CDP 安全接入与网页自动化交互插件</b>
+  <b>HanaAgent / OpenHanako 星愿浏览器 (Twinkstar) 与 Chromium 原生浏览器 CDP 安全接入插件</b>
 </p>
 
 [![HanaAgent Plugin](https://img.shields.io/badge/HanaAgent-Plugin-E879F9?style=flat-square&logo=probot&logoColor=white)](https://github.com/liliMozi/openhanako)
@@ -17,13 +17,23 @@
 
 ## 📖 简介
 
-让 HanaAgent 通过 Chrome DevTools Protocol（CDP）安全接入用户自己正在使用的星愿浏览器，并复用已有登录态完成动态网页任务。
+让 HanaAgent 通过 Chrome DevTools Protocol（CDP）安全接入用户日常正在使用的浏览器（星愿浏览器、Google Chrome 等），直接复用已有登录态、书签与扩展插件完成动态网页交互。
 
-本项目基于 [hanako-web-access](https://github.com/huanyu16/hanako-web-access) 的个人 fork 改造。它以星愿浏览器为默认目标，并强化了本地代理、标签页边界和隐私数据处理。
+本项目基于 [hanako-web-access](https://github.com/huanyu16/hanako-web-access) 的个人 fork 改造。项目最初以星愿浏览器为目标设计，现已扩展支持通用 Chromium 内核浏览器，并强化了本地代理、标签页边界和隐私数据隔离。
+
+## 🧪 浏览器测试状态与兼容性说明
+
+本插件基于通用的 Chrome DevTools Protocol（CDP）规范构建：
+
+| 浏览器 | 测试状态 | 运行环境与说明 |
+| --- | --- | --- |
+| **Google Chrome** | ✅ **已测试验证** | Linux / Windows 深度实机验证。支持在日常主力 Profile 中直接连通，保留完整登录态、书签与扩展插件。 |
+| **星愿浏览器 (Twinkstar)** | ✅ **已测试验证** | Windows 环境下实机验证，开箱默认支持。 |
+| **其他 Chromium 内核浏览器**<br>*(Microsoft Edge, Brave, Vivaldi 等)* | ⚠️ **未进行实机测试** | 底层 CDP 协议理论上均通用，但**目前开发者尚未对这些浏览器进行实际兼容性测试**。欢迎社区用户反馈与实测。 |
 
 ## 它能做什么
 
-星愿浏览器访问插件会连接已经由用户开启远程调试的浏览器实例。它可以创建后台标签页、读取可见文本、执行受限页面 JavaScript、点击、输入、滚动、选择上传文件、截图，并关闭任务创建的标签页。
+浏览器访问插件会连接已经由用户开启远程调试的浏览器实例。它可以创建后台标签页、读取可见文本、执行受限页面 JavaScript、点击、输入、滚动、选择上传文件、截图，并关闭任务创建的标签页。
 
 它适合以下场景：
 
