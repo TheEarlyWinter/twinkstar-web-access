@@ -1,4 +1,4 @@
-name: Build & Release Plugin
+name: Build & Release App
 
 on:
   push:
@@ -14,11 +14,22 @@ permissions:
 
 jobs:
   build:
-    name: Package Plugin
+    name: Package App
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run test suite
+        run: npm test
 
       - name: Get version
         id: get_version
@@ -26,22 +37,19 @@ jobs:
           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
             VERSION=${GITHUB_REF#refs/tags/}
           else
-            VERSION="v1.0.0"
+            VERSION="v$(node -p "JSON.parse(require('fs').readFileSync('package.json', 'utf8')).version")"
           fi
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
-          echo "ZIP_NAME=twinkstar-web-access-$VERSION.zip" >> $GITHUB_OUTPUT
+          echo "ZIP_NAME=app-twinkstar-web-access-$VERSION.zip" >> $GITHUB_OUTPUT
 
-      - name: Create Plugin Archive
+      - name: Build V2 Package & Archive
         run: |
+          mkdir -p ../packages
+          node scripts/build-v2-package.mjs --out ../packages
           mkdir -p dist
-          zip -r "dist/${{ steps.get_version.outputs.ZIP_NAME }}" . \
-            -x "*.git*" \
-            -x "*.github*" \
-            -x "*local-accounts.json*" \
-            -x "*.local.json*" \
-            -x "*.env*" \
-            -x "*node_modules*" \
-            -x "dist/*"
+          cd ../packages/twinkstar-web-access
+          zip -r "$GITHUB_WORKSPACE/dist/${{ steps.get_version.outputs.ZIP_NAME }}" .
+          cd "$GITHUB_WORKSPACE"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4

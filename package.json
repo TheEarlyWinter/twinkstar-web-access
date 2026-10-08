@@ -1,14 +1,17 @@
 {
   "name": "twinkstar-web-access",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "Token-protected CDP access to user-managed Chromium browsers (Google Chrome, Twinkstar) for HanaAgent.",
+  "description": "Token-protected CDP access to user-managed Chromium browsers (Google Chrome, Twinkstar) for HanaAgent V2.",
   "license": "MIT",
   "engines": {
     "node": ">=22"
   },
+  "dependencies": {
+    "@hana/app-sdk": "file:./vendor/hana-app-sdk.tgz"
+  },
   "scripts": {
-    "test": "node --test tests/browser-config.test.mjs tests/site-knowledge.test.mjs tests/proxy-auth.test.mjs tests/router-skill.test.mjs"
+    "test": "node --test tests/*.test.mjs"
   }
 }

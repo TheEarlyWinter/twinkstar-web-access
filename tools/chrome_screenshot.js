@@ -15,10 +15,7 @@ export const parameters = {
 export async function execute(input, toolCtx) {
   const result = await screenshotPage(toolCtx, input.targetId);
   return {
-    content: [{ type: 'text', text: `Saved screenshot in plugin-private data: ${result.file}` }],
-    details: {
-      ...result,
-      media: { mediaUrls: [result.file] },
-    },
+    content: [{ type: 'text', text: `Captured screenshot (session file: ${result.fileId})` }],
+    details: result,
   };
 }

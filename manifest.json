@@ -1,43 +1,57 @@
 {
+  "manifestVersion": 2,
   "id": "twinkstar-web-access",
   "name": "Twinkstar & Chromium Web Access",
-  "version": "1.1.1",
+  "version": "2.0.0",
+  "minAppVersion": "1.0.0-beta",
+  "entry": "index.js",
+  "icon": "assets/icon.png",
   "description": "Token-protected CDP web access for user-managed Chromium browsers (Google Chrome, Twinkstar).",
-  "trust": "full-access",
-  "minAppVersion": "0.89.0",
+  "capabilities": [
+    "app/runtime.execute",
+    "app/runtime.native",
+    "app/runtime.network",
+    "app/tools.expose-to-model",
+    "app/session.stage-file",
+    "app/resources.read"
+  ],
   "contributes": {
-    "configuration": {
-      "properties": {
-        "browserProfile": {
-          "type": "string",
-          "enum": ["twinkstar", "auto", "chrome", "chromium"],
-          "default": "twinkstar",
-          "title": "Target Chromium Browser"
-        },
-        "browserUserDataDir": {
-          "type": "string",
-          "default": "",
-          "title": "Browser User Data Directory Override"
-        },
-        "probeCommonDebuggingPorts": {
-          "type": "boolean",
-          "default": true,
-          "title": "Probe Common Debugging Ports When Discovery Fails"
-        },
-        "proxyPort": {
-          "type": "number",
-          "default": 3457,
-          "title": "Local CDP Proxy Port"
-        },
-        "autoStartProxy": {
-          "type": "boolean",
-          "default": false,
-          "title": "Eagerly Start Local CDP Proxy When Plugin Loads"
-        },
-        "allowOperateNonOwnedTabs": {
-          "type": "boolean",
-          "default": false,
-          "title": "Dangerous: Allow Operating Existing Browser Tabs"
+    "settings": {
+      "title": "Twinkstar & Chromium Web Access",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "browserProfile": {
+            "type": "string",
+            "enum": ["twinkstar", "auto", "chrome", "chromium"],
+            "default": "twinkstar",
+            "title": "Target Chromium Browser"
+          },
+          "browserUserDataDir": {
+            "type": "string",
+            "default": "",
+            "title": "Browser User Data Directory Override"
+          },
+          "probeCommonDebuggingPorts": {
+            "type": "boolean",
+            "default": true,
+            "title": "Probe Common Debugging Ports When Discovery Fails"
+          },
+          "proxyPort": {
+            "type": "number",
+            "default": 3457,
+            "title": "Local CDP Proxy Port"
+          },
+          "autoStartProxy": {
+            "type": "boolean",
+            "default": false,
+            "title": "Deprecated: Always lazy in V2"
+          },
+          "allowOperateNonOwnedTabs": {
+            "type": "boolean",
+            "default": true,
+            "title": "Dangerous: Allow Operating Existing Browser Tabs"
+          }
         }
       }
     }

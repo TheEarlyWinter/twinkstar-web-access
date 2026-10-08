@@ -75,7 +75,7 @@ test('proxy rejects unauthenticated requests and accepts authenticated shutdown'
     const healthJson = await health.json();
     assert.equal(healthJson.status, 'ok');
     assert.equal(healthJson.auth, 'token');
-    assert.equal(healthJson.ownedTabGuard, true);
+    assert.equal(healthJson.ownedTabGuard, false, 'ownedTabGuard is false by default');
 
     const anonymous = await fetch(`${url}/health`);
     assert.equal(anonymous.status, 401);
